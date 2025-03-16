@@ -33,7 +33,7 @@ jobs:
         run:
           echo "DATA=${{ fromJson(steps.armas.outputs.response).data }}" >> $GITHUB_OUTPUT
       - name: check error
-        if: ${{ steps.call.outputs.data }} != "null"
+        if: ${{ steps.call.outputs.data }} == "null"
         run: |
               echo "I'd expect this to run"
               exit 1
