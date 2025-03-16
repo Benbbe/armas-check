@@ -30,7 +30,7 @@ jobs:
           method: GET
       - name: Show Response
         id: call
-        if: 
+        run:
           echo "ERROR=${{ fromJson(steps.armas.outputs.response).error }}" -> $GITHUB_OUTPUT
       - name: check error
         if: '!steps.armas.call.error = ${{ env.ERROR }}'
