@@ -12,7 +12,8 @@ on:
 env: 
   departure: '"puertoOrigenEntidad": {"id": "LEI","textoCorto": "ALMERIA","textoLargo": "Almería","location": "andalucia","codigoPuerto": "LEI"}'
   arrival:   '"puertoDestinoEntidad": {"id": "GHZ","textoCorto": "GHAZAOUET","textoLargo": "Ghazaouet","location": "argelia","codigoPuerto": "GHZ"}'
-  date: '"fecha": "20250601"'
+  date: '"fecha": "20250701"'
+  ERROR: "SE HA PRODUCIDO UN ERROR Y NO SE HA PODIDO COMPLETAR LA OPERACION. POR FAVOR, INTENTELO PASADOS UNOS MINUTOS. GRACIAS."
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,8 +29,10 @@ jobs:
           url: https://armastrasmediterranea.com/api/calendar?state={${{env.departure}},${{env.arrival}},${{env.date}}}
           method: GET
       - name: Show Response
-        run: |
-          echo ${{ steps.armas.outputs.response }}
-          echo ${{ steps.armas.outputs.headers }}
-          echo ${{ steps.armas.outputs.status }}
-          echo ${{ fromJson(steps.armas.outputs.response).field_you_want_to_access }}
+        id: call
+        if: 
+          echo "ERROR=${{ fromJson(steps.armas.outputs.response).error }}" -> $GITHUB_OUTPUT
+      - name: check error
+        if: '!steps.armas.call.error = ${{ env.ERROR }}'
+        run: echo "I'd expect this to run"
+        
