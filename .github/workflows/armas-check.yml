@@ -32,7 +32,7 @@ jobs:
       - name: Show Response
         id: call
         run:
-          echo "ERROR=${{ fromJson(steps.armas.outputs.response).error }}" -> $GITHUB_OUTPUT
+          echo "ERROR=${{ fromJson(steps.armas.outputs.response).error }}" >> $GITHUB_OUTPUT
       - name: check error
         if: contains(steps.armas.call.outputs.ERROR, env.ERROR'
         run: echo "I'd expect this to run"
