@@ -9,10 +9,11 @@ on:
   schedule:
   - cron: "30 6 * * *"
   - cron: "30 8 * * *"
+  
 env: 
   departure: '"puertoOrigenEntidad": {"id": "LEI","textoCorto": "ALMERIA","textoLargo": "Almería","location": "andalucia","codigoPuerto": "LEI"}'
   arrival:   '"puertoDestinoEntidad": {"id": "GHZ","textoCorto": "GHAZAOUET","textoLargo": "Ghazaouet","location": "argelia","codigoPuerto": "GHZ"}'
-  date: '"fecha": "20250701"'
+  date: '"fecha": "20250601"'
   ERROR: "SE HA PRODUCIDO UN ERROR Y NO SE HA PODIDO COMPLETAR LA OPERACION. POR FAVOR, INTENTELO PASADOS UNOS MINUTOS. GRACIAS."
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
